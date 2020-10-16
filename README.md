@@ -2,27 +2,28 @@
 
 Manipula banco de dados do tipo mySQL (CRUD).
 
-Depêndencias:</br>
-	whatsapp-web.js</br>
-	qrcode-terminal</br>
-	mysql</br>
+### Depêndencias
+
+whatsapp-web.js</br>
+qrcode-terminal</br>
+mysql</br>
 	
-# Instalando e Executando
+## Instalando e Executando
 
 Antes de tudo certifiquei que tenha um servidor mySQL instalado, crie um banco de dados e uma tabela e modifique o código!
 
 ```npm install``` para instalar as dependências.</br>
 ```node .``` para iniciar o arquivo index.js.
 
-# Depois de iniciar
+## Depois de iniciar
 
 O terminal apresentará um QR Code para conectar a sua conta do WhatsApp. Assim que conectado com sucesso estará pronto para uso!
 
-# Implementações Futuras
+## Implementações Futuras
 
 Irei adicionar um comando para criação de banco de dados e tabela de forma automática.</br>
 
-# Comandos
+## Comandos
 
 !ping - Só meme mesmo.</br>
 !limparbanco - Reseta a tabela.</br>
