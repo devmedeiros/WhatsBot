@@ -11,3 +11,7 @@ Depêndencias:</br>
 
 ```npm install``` para instalar as dependências.</br>
 ```node .``` para iniciar o arquivo index.js.
+
+# Depois de iniciar
+
+O terminal apresentará um QR Code para conectar a sua conta do WhatsApp. Assim que conectado com sucesso estará pronto para uso!
