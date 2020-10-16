@@ -21,7 +21,7 @@ O terminal apresentará um QR Code para conectar a sua conta do WhatsApp. Assim 
 
 ## Implementações Futuras
 
-Irei adicionar um comando para criação de banco de dados e tabela de forma automática.</br>
+Irei adicionar um comando para criação de banco de dados e tabela de forma automática.
 
 ## Comandos
 
