@@ -1,1 +1,3 @@
-# Só um bot de comandos para WhatsApp, só usar NodeJS e rodar!
+# WhatsApp Bot
+
+Manipula banco de dados do tipo mySQL (CRUD).
