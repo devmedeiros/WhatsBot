@@ -1,7 +1,7 @@
 {
     "host":"IP:PORT",
-    "user":"USER FROM MYSQL",
-    "passwd": "PASSWORD FROM MYSQL",
+    "user":"MYSQL USER",
+    "passwd": "MYSQL PASSWORD",
     "database":"DATABASE NAME",
     "table":"TABLE NAME",
     "bot_name":"BOT NAME"
