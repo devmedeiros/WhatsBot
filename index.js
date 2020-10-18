@@ -36,6 +36,11 @@ var con = mysql.createConnection({
   database: configs.database
 });
 
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Banco de dados "+configs.database+" conectado com sucesso!");
+});
+
 //gera QR code para ler
 client.on('qr', qr => {
     qrcode.generate(qr, {small: true});
@@ -43,7 +48,7 @@ client.on('qr', qr => {
 
 //avisa no terminal quando tiver pronto para uso
 client.on('ready', () => {
-    console.log(configs.bot_name+' conectado com sucesso!');
+    console.log(configs.bot_name+" iniciado!");
 });
 
 //bloco de comandos
@@ -58,7 +63,7 @@ con.connect(function() {
     //limpa banco de dados e reseta contagem de ID
     else if (msg.body.startsWith('!limparbanco')) {
       client.sendMessage(msg.from, "Banco de Dados limpo!");
-      const sql = "TRUNCATE frases";
+      const sql = "TRUNCATE "+configs.table;
       return con.query(sql);
     }
 
@@ -96,7 +101,7 @@ con.connect(function() {
     }
 
     //exibe todas as frases
-    con.query("SELECT * FROM frases", function (err, result) {
+    con.query("SELECT * FROM "+configs.table, function (err, result) {
       if (err) throw err;
       if (msg.body == '!listar') {
         for (let x in result){
