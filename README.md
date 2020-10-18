@@ -42,7 +42,7 @@ Antes de tudo certifiquei que tenha um servidor mySQL instalado, crie um banco d
 
 ```
 	
-    Obs: Se a acontecer erro na conexão basta remover a porta.
+Obs: Se a acontecer erro na conexão basta remover a porta.
 
 ## Instalando e Executando
 
