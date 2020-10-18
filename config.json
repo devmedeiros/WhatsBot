@@ -1,0 +1,8 @@
+{
+    "host":"IP:PORT",
+    "user":"USER FROM MYSQL",
+    "passwd": "PASSWORD FROM MYSQL",
+    "database":"DATABASE NAME",
+    "table":"TABLE NAME",
+    "bot_name":"BOT NAME"
+}

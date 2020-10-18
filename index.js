@@ -6,6 +6,9 @@ const SESSION_FILE_PATH = './session.json';
 const { Client } = require('whatsapp-web.js');
 const { connect } = require('http2');
 
+//importa arquivo de configuração
+const configs = require('./config.json');
+
 //variavel que define sessão
 let sessionData;
 if(fs.existsSync(SESSION_FILE_PATH)) {
@@ -27,10 +30,10 @@ client.on('authenticated', (session) => {
 
 //dados do mysql
 var con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: null,
-  database: "gman_bot"
+  host: configs.host,
+  user: configs.user,
+  password: configs.passwd,
+  database: configs.database
 });
 
 //gera QR code para ler
@@ -40,7 +43,7 @@ client.on('qr', qr => {
 
 //avisa no terminal quando tiver pronto para uso
 client.on('ready', () => {
-    console.log('Bot conectado com sucesso!');
+    console.log(configs.bot_name+' conectado com sucesso!');
 });
 
 //bloco de comandos
@@ -70,13 +73,13 @@ con.connect(function() {
       let comando = msg.body.replace("!edit", "");
       let dados = comando.replace(tableID, "");
       client.sendMessage(msg.from, "Registro editado!");
-      const sql = "UPDATE frases SET frase = ('"+dados+"') WHERE id = ("+tableID+")";
+      const sql = "UPDATE "+configs.table+" SET frase = ('"+dados+"') WHERE id = ("+tableID+")";
       con.query(sql);
     }
     
     //deleta registros
     else if (msg.body.startsWith('!del')) {
-      const sql = "DELETE FROM frases WHERE id = (?)";
+      const sql = "DELETE FROM "+configs.table+" WHERE id = (?)";
       let corno = msg.body.replace("!del", "");
       const values = [corno];
       client.sendMessage(msg.from, "Registro removido!");
@@ -85,7 +88,7 @@ con.connect(function() {
     
     //adiciona registros
     else if (msg.body.startsWith('!add')) {
-      const sql = "INSERT INTO frases (frase) VALUES (?)";
+      const sql = "INSERT INTO "+configs.table+" (frase) VALUES (?)";
       let dados = msg.body.replace("!add", "");
       const values = [dados];
       client.sendMessage(msg.from, "Registro inserido!");
@@ -105,7 +108,7 @@ con.connect(function() {
     });
 
     //frases aleatórias
-    con.query("SELECT * FROM frases ORDER BY RAND() LIMIT 1", function (err, result) {
+    con.query("SELECT * FROM "+configs.table+" ORDER BY RAND() LIMIT 1", function (err, result) {
       if (err) throw err;
       if (msg.body == '!random') {
         for (let x in result) {
