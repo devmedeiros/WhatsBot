@@ -57,7 +57,7 @@ con.connect(function() {
 
     //exibe os comandos do bot
     if (msg.body == '!ajuda') {
-      msg.reply('⊱⋅ ───⊰• *Comandos* •⊱─── ⋅⊰\n\n× !ping × Só meme mesmo\n× !limparbanco × Limpa o Banco de Dados\n× !edit × Edita registro específico\n× !add × Adiciona registro\n× !del × Deleta registro\n× !listar × Lista todos os registros')
+      msg.reply('⊱⋅ ───⊰• *Comandos* •⊱─── ⋅⊰\n\n× !ping × Só meme mesmo\n× !limparbanco × Limpa o Banco de Dados\n× !edit × Edita registro específico\n× !add × Adiciona registro\n× !del × Deleta registro\n× !listar × Lista todos os registros\n× !ver × Visualiza registro específico\n× !random × Visualiza registro aleatório')
     }
 
     //limpa banco de dados e reseta contagem de ID
@@ -85,8 +85,8 @@ con.connect(function() {
     //deleta registros
     else if (msg.body.startsWith('!del')) {
       const sql = "DELETE FROM "+configs.table+" WHERE id = (?)";
-      let corno = msg.body.replace("!del", "");
-      const values = [corno];
+      let getID = msg.body.replace("!del", "");
+      const values = [getID];
       client.sendMessage(msg.from, "Registro removido!");
       con.query(sql, values);
     }
@@ -100,7 +100,7 @@ con.connect(function() {
       con.query(sql, values);
     }
 
-    //exibe todas as frases
+    //exibe todas os resultados
     con.query("SELECT * FROM "+configs.table, function (err, result) {
       if (err) throw err;
       if (msg.body == '!listar') {
@@ -111,6 +111,18 @@ con.connect(function() {
         }
       };
     });
+
+    //exibe resultado por id
+    if (msg.body.startsWith('!ver')) {
+        const sql = "SELECT * FROM "+configs.table+" WHERE id = (?)";
+        let dados = msg.body.replace("!ver ", "");
+        const values = [dados];
+      con.query(sql, values, function (err, result) {
+        if (err) throw err;
+        var fraseDB = JSON.stringify(result[0].frase);
+        client.sendMessage(msg.from, JSON.parse(fraseDB));
+      });
+    };
 
     //frases aleatórias
     con.query("SELECT * FROM "+configs.table+" ORDER BY RAND() LIMIT 1", function (err, result) {
