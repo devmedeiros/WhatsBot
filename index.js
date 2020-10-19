@@ -75,8 +75,8 @@ con.connect(function() {
     //edita registros
     else if (msg.body.startsWith('!edit')) {
       const [ command, tableID ] = msg.body.split(' ');
-      let comando = msg.body.replace("!edit", "");
-      let dados = comando.replace(tableID, "");
+      let comando = msg.body.replace("!edit ", "");
+      let dados = comando.replace(tableID+" ", "");
       client.sendMessage(msg.from, "Registro editado!");
       const sql = "UPDATE "+configs.table+" SET frase = ('"+dados+"') WHERE id = ("+tableID+")";
       con.query(sql);
